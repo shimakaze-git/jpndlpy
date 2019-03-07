@@ -6,9 +6,10 @@ Details: http://iss.ndl.go.jp/information/api/
 created by @shimakaze-git
 '''
 from validator import SearchTextSchema
+from client_base import JapanNdlClientBase
 
 
-class JapanNdlClient:
+class JapanNdlClient(JapanNdlClientBase):
     ''' Client for JP NDL API v2
     '''
 
@@ -84,36 +85,18 @@ class JapanNdlClient:
         items : json
             複数の図書情報
         """
-        # validator
-        # http://iss.ndl.go.jp/api/opensearch
 
         data, errs = self.search_text_schema.load(kwargs)
-        print(data)
-        print("errs : ", errs)
-        print(not errs)
-
-        # result = self.search_text_schema.dump(data)
-        # print(result)
-
-        # result = schema.dump(user)
-        # pprint(result)
-
-        # print(dir(self))
-        # print(self.__dir__())
-        # print(self.search_text_schema)
-        # print(title)
-        # print(args)
-        # print(kwargs)
-
-
-def func_kwargs(**kwargs):
-    print('kwargs: ', kwargs)
-    print('type: ', type(kwargs))
-
-func_kwargs(key1=1, key2=2, key3=3)
+        if not errs:
+            serialize_params = self.serializer(data)
+            return self.get(serialize_params)
+        else:
+            print(errs)
+            # raise Exception()
 
 jndlclient = JapanNdlClient()
-jndlclient.search_text(title="test", from_date="2018-1-22")
+# jndlclient.search_text(title="test", cnt=1, from_date="2018-1*22", until_date="tee")
+jndlclient.search_text(title="test", cnt=1, from_date="2018-1-22")
 
 # from qiita_v2.client import QiitaClient
 
