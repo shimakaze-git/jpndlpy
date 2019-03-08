@@ -5,5 +5,11 @@ NDC: http://www.libnet.pref.okayama.jp/shiryou/ndc/
 
 ``` python
 
-print('test')
+jndlclient = JapanNdlClient()
+# jndlclient.search_text(title="test", cnt=1, from_date="2018-1*22", until_date="tee")
+# jndlclient.search_text(title="test", cnt=1, from_date="2018-1-22")
+response = jndlclient.search_text(title="python", cnt=2)
+
+print(response.to_json())
+
 ```

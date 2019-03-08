@@ -104,22 +104,3 @@ jndlclient = JapanNdlClient()
 response = jndlclient.search_text(title="python", cnt=2)
 
 print(response.to_json())
-
-# from qiita_v2.client import QiitaClient
-
-# client = QiitaClient(access_token=<access_token>)
-# res = client.get_user('petitviolet')
-# res.to_json()
-
-# # => jsonified contents
-
-# require "qiita"
-
-# client = Qiita::Client.new(access_token: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd")
-# client.list_items
-# client.list_users
-# client.list_user_items("r7kamura")
-# client.get_user("r7kamura")
-# client.get_user("r7kamura").status
-# client.get_user("r7kamura").headers
-# client.get_user("r7kamura").body
