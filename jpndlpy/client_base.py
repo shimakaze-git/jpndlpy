@@ -7,6 +7,10 @@ created by @shimakaze-git
 '''
 
 import requests
+from requests import RequestException
+
+from exceptions import JapanNdlException
+from response import JapanNdlResponse
 # ''' qiita.QiitaClientBase
 # Base for QiitaClient
 # Implements some primitive methods for request Qiita API v2
@@ -35,10 +39,10 @@ class JapanNdlClientBase:
             method=method, url=url, params=params
         )
 
-        # print(dir(response))
-        # print(response.text)
         if response.ok:
-            return response.text
+            return JapanNdlResponse(response)
+        else:
+            return JapanNdlException(response)
 
     def request(self, params=None):
         url = self.api_url

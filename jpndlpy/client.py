@@ -91,12 +91,19 @@ class JapanNdlClient(JapanNdlClientBase):
             serialize_params = self.serializer(data)
             return self.get(serialize_params)
         else:
-            print(errs)
-            # raise Exception()
+            erros_mes = ''.join(
+                [key + ':' + errs[key][0] + '\n' for key in errs]
+            )
+            raise Exception(erros_mes)
+
+    def 
 
 jndlclient = JapanNdlClient()
 # jndlclient.search_text(title="test", cnt=1, from_date="2018-1*22", until_date="tee")
-jndlclient.search_text(title="test", cnt=1, from_date="2018-1-22")
+# jndlclient.search_text(title="test", cnt=1, from_date="2018-1-22")
+response = jndlclient.search_text(title="python", cnt=2)
+
+print(response.to_json())
 
 # from qiita_v2.client import QiitaClient
 
