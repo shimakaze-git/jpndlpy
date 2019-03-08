@@ -11,7 +11,7 @@ import json
 # from xml import etree.ElementTree as et
 import xml.etree.ElementTree as et
 
-from item_entity import ItemEntity
+from .item_entity import ItemEntity
 
 
 class JapanNdlResponse():
@@ -64,8 +64,9 @@ class JapanNdlResponse():
         """
         item 要素を抽出していく
         """
-        items = root['item']
-        self.extract_items(items)
+        if 'item' in root:
+            items = root['item']
+            self.extract_items(items)
 
     def xml_to_dict(self):
         """ xml to dict """
@@ -87,7 +88,7 @@ class JapanNdlResponse():
     def extract_search_info(self, root):
         """ extract search info """
 
-        self._title = root['title']
+        self._title = root['title'].split()[0]
         self._link = root['link']
         self._description = root['description']
         self._language = root['language']

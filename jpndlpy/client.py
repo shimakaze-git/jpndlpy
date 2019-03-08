@@ -5,8 +5,8 @@ Python wrapper for Japan National Dict Library API
 Details: http://iss.ndl.go.jp/information/api/
 created by @shimakaze-git
 '''
-from validator import SearchTextSchema
-from client_base import JapanNdlClientBase
+from .validator import SearchTextSchema
+from .client_base import JapanNdlClientBase
 
 
 class JapanNdlClient(JapanNdlClientBase):
@@ -15,6 +15,7 @@ class JapanNdlClient(JapanNdlClientBase):
 
     def __init__(self):
         self.search_text_schema = SearchTextSchema()
+        self.response = None
 
     def search_text(
         self,
@@ -89,18 +90,46 @@ class JapanNdlClient(JapanNdlClientBase):
         data, errs = self.search_text_schema.load(kwargs)
         if not errs:
             serialize_params = self.serializer(data)
-            return self.get(serialize_params)
+            self.response = self.get(serialize_params)
+            return self.response
         else:
             erros_mes = ''.join(
                 [key + ':' + errs[key][0] + '\n' for key in errs]
             )
             raise Exception(erros_mes)
 
-    def 
+    @property
+    def search_title(self):
+        ''' Returns text of search
+        '''
+        return self.response._title
 
-jndlclient = JapanNdlClient()
-# jndlclient.search_text(title="test", cnt=1, from_date="2018-1*22", until_date="tee")
-# jndlclient.search_text(title="test", cnt=1, from_date="2018-1-22")
-response = jndlclient.search_text(title="python", cnt=2)
+    @property
+    def search_link(self):
+        ''' Returns link of search
+        '''
+        return self.response._link
 
-print(response.to_json())
+    @property
+    def search_language(self):
+        ''' Returns language of search
+        '''
+        return self.response._language
+
+    @property
+    def search_total_results(self):
+        ''' Returns total_results of search
+        '''
+        return self.response._total_results
+
+    @property
+    def search_start_index(self):
+        ''' Returns start_index of search
+        '''
+        return self.response._start_index
+
+    @property
+    def search_items_per_page(self):
+        ''' Returns items_per_page of search
+        '''
+        return self.response._items_per_page

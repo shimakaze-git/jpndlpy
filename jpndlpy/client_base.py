@@ -9,17 +9,8 @@ created by @shimakaze-git
 import requests
 from requests import RequestException
 
-from exceptions import JapanNdlException
-from response import JapanNdlResponse
-# ''' qiita.QiitaClientBase
-# Base for QiitaClient
-# Implements some primitive methods for request Qiita API v2
-# created by @petitviolet
-# '''
-# import requests
-# import yaml
-# from .exception import QiitaApiException
-# from .response import QiitaResponse
+from .exceptions import JapanNdlException
+from .response import JapanNdlResponse
 
 
 class JapanNdlClientBase:
