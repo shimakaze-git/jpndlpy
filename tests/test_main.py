@@ -27,16 +27,16 @@ class JondlpyTest(unittest.TestCase):
         self.assertEqual(jndlclient.search_title, title)
         self.assertEqual(type(response.to_json()), dict)
 
-    def test_jpndlpy_json(self):
-        title = "python"
-        cnt = 2
+    # def test_jpndlpy_json(self):
+    #     title = "python"
+    #     cnt = 2
 
-        jndlclient = JapanNdlClient()
-        response = jndlclient.search_text(title=title, cnt=cnt)
+    #     jndlclient = JapanNdlClient()
+    #     response = jndlclient.search_text(title=title, cnt=cnt)
 
-        self.assertEqual(response.to_json()['title'], title)
-        self.assertEqual(response.to_json()['language'], "ja")
-        self.assertEqual(response.to_json()['items_per_page'], str(cnt))
+    #     self.assertEqual(response.to_json()['title'], title)
+    #     self.assertEqual(response.to_json()['language'], "ja")
+    #     self.assertEqual(response.to_json()['items_per_page'], str(cnt))
 
 if __name__ == "__main__":
     unittest.main()
