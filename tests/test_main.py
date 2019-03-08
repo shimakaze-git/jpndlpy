@@ -23,10 +23,20 @@ class JondlpyTest(unittest.TestCase):
         # jndlclient.search_text(title="test", cnt=1, from_date="2018-1*22", until_date="tee")
         # jndlclient.search_text(title="test", cnt=1, from_date="2018-1-22")
         response = jndlclient.search_text(title=title, cnt=cnt)
-        print(response.to_json())
 
         self.assertEqual(jndlclient.search_title, title)
         self.assertEqual(type(response.to_json()), dict)
+
+    def test_jpndlpy_json(self):
+        title = "python"
+        cnt = 2
+
+        jndlclient = JapanNdlClient()
+        response = jndlclient.search_text(title=title, cnt=cnt)
+
+        self.assertEqual(response.to_json()['title'], title)
+        self.assertEqual(response.to_json()['language'], "ja")
+        self.assertEqual(response.to_json()['items_per_page'], str(cnt))
 
 if __name__ == "__main__":
     unittest.main()
