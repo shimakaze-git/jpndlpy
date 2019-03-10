@@ -108,8 +108,9 @@ jobs:
       - run:
           name: run build
           command: |
-            . venv/bin/activate
+            la -la
             make build
+            ls -la
 
       - store_artifacts:
           path: test-reports
@@ -148,12 +149,12 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
+      # - deploy:
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only: master
 
 # https://haskell.e-bigmoon.com/posts/2018/07-21-circleci-2.html
 # https://qiita.com/nikadon/items/b7aac3b2d548ebb128ab#branches
