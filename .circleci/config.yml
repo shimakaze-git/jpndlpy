@@ -53,7 +53,7 @@ jobs:
       # https://pytest.org
       # https://nose.readthedocs.io
       - run:
-          name: run tests
+          name: run setup
           command: |
             . venv/bin/activate
             # python manage.py test
@@ -65,9 +65,9 @@ jobs:
       #     destination: test-reports
 
   test:
-    executor:
-      # name で使いたい executor を指定
-      name: default
+    # executor:
+    #   # name で使いたい executor を指定
+    #   name: default
 
     steps:
       - checkout
@@ -81,6 +81,8 @@ jobs:
           path: test-reports
           destination: test-reports
 
+  # deploy:
+  #     -   
 
 workflows:
   version: 2.1
