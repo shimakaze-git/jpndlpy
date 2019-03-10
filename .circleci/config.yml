@@ -81,8 +81,58 @@ jobs:
           path: test-reports
           destination: test-reports
 
-  # deploy:
-  #     -   
+  build:
+    executor:
+      name: default
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+      # run tests!
+      # this example uses Django's built-in test-runner
+      # other common Python testing frameworks include pytest and nose
+      # https://pytest.org
+      # https://nose.readthedocs.io
+      - run:
+          name: run build
+          command: |
+            . venv/bin/activate
+            make build
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
+
+  deploy:
+    executor:
+      # name で使いたい executor を指定
+      name: default
+
+    steps:
+      - checkout
+
+      - run:
+          name: run deploy
+          command: |
+            make test-deploy
+            make deploy
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
+
 
 workflows:
   version: 2.1
@@ -90,8 +140,20 @@ workflows:
     jobs:
       - setup
       - test:
-          requires:  
+          requires: 
             - setup
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
 
 # https://haskell.e-bigmoon.com/posts/2018/07-21-circleci-2.html
 # https://qiita.com/nikadon/items/b7aac3b2d548ebb128ab#branches
