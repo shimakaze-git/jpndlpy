@@ -3,8 +3,10 @@
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
 version: 2
-jobs:
-  build:
+executors:
+  # ここに好きな名前で executor を定義できる
+  default:
+    working_directory: ~/workspace
     docker:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
@@ -15,7 +17,13 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+jobs:
+
+  # build:
+  setup:
+    executor:
+      # name で使いたい executor を指定
+      name: default
 
     steps:
       - checkout
@@ -50,12 +58,40 @@ jobs:
             . venv/bin/activate
             # python manage.py test
             python --version
+            # make test
+
+      # - store_artifacts:
+      #     path: test-reports
+      #     destination: test-reports
+
+  test:
+    executor:
+      # name で使いたい executor を指定
+      name: default
+
+    steps:
+      - checkout
+
+      - run:
+          name: run tests
+          command: |
             make test
 
       - store_artifacts:
           path: test-reports
           destination: test-reports
 
+
+workflows:
+  version: 2
+  setup_and_deploy:
+    jobs:
+      # - build
+      - setup
+      - test
+          name: test
+          requires:
+            - setup
 
 # https://haskell.e-bigmoon.com/posts/2018/07-21-circleci-2.html
 # https://qiita.com/nikadon/items/b7aac3b2d548ebb128ab#branches
