@@ -108,7 +108,7 @@ jobs:
       - run:
           name: run build
           command: |
-            la -la
+            ls -la
             make build
             ls -la
 
