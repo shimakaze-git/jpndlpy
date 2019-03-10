@@ -2,12 +2,13 @@ import os
 import sys
 import unittest
 
+import pprint
+
 sys.path.append(
     os.path.dirname(
         os.path.dirname(os.path.abspath(__file__))
     )
 )
-
 
 # from jpndlpy.client import JapanNdlClient
 from jpndlpy import JapanNdlClient
@@ -21,7 +22,7 @@ class JondlpyClientTest(unittest.TestCase):
 
         jndlclient = JapanNdlClient()
         response = jndlclient.search_text(title=title, cnt=cnt)
-        print(response.to_json())
+        pprint.pprint(response.to_json())
 
         self.assertEqual(type(response.to_json()), dict)
 
