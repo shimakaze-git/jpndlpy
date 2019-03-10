@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
-version: 2
+version: 2.1
 executors:
   # ここに好きな名前で executor を定義できる
   default:
@@ -83,7 +83,7 @@ jobs:
 
 
 workflows:
-  version: 2
+  version: 2.1
   setup_and_deploy:
     jobs:
       - setup
