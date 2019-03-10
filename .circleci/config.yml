@@ -65,9 +65,9 @@ jobs:
       #     destination: test-reports
 
   test:
-    # executor:
-    #   # name で使いたい executor を指定
-    #   name: default
+    executor:
+      # name で使いたい executor を指定
+      name: default
 
     steps:
       - checkout
