@@ -1,39 +1,53 @@
-jpndlpy
-====
+Jpndlpy: HTTP Client for the Japan National Diet Library API.
+========
+[![image](https://img.shields.io/pypi/v/jpndlpy.svg)](https://pypi.org/project/jpndlpy/)
+[![image](https://img.shields.io/pypi/l/jpndlpy.svg)](https://pypi.org/project/jpndlpy/)
+[![image](https://img.shields.io/pypi/pyversions/jpndlpy.svg)](https://pypi.org/project/jpndlpy/)
 
-jpndlpyは、国立国会図書館から図書情報を取得するためのrequestsのラッパーライブラリです。
+**jpndlpyは、国立国会図書館APIから図書情報を取得するためのrequestsのラッパーライブラリです。**
 
-## Description
+
+Description
+------------
 
 jpndlpyは、日本国立国会図書館が出すopensearch(http://iss.ndl.go.jp/api/opensearch) APIから情報を取得し、json形式に整形します。
 
-- Api document: http://iss.ndl.go.jp/information/api/
-- NDC: http://www.libnet.pref.okayama.jp/shiryou/ndc/
+Installation
+------------
 
-
-## Install
 jpndlpyのインストール方法
 
-```bash
-python setup.py install
+``` {.sourceCode .bash}
+$ python setup.py install
 ```
 
 ```bash
-pip3 install jpndlpy
+$ pip3 install jpndlpy
 ```
 
-## Usage
-使用方法
+Usage
+------------
+
+使用方法とサンプルコード
 
 ``` python
 jndlclient = JapanNdlClient()
-# jndlclient.search_text(title="test", cnt=1, from_date="2018-1*22", until_date="tee")
-# jndlclient.search_text(title="test", cnt=1, from_date="2018-1-22")
 response = jndlclient.search_text(title="python", cnt=2)
 
 print(response.to_json())
 ```
 
-## Licence
+Documentation
+-------------
+
+- [japnese README](./README.ja.md)
+
+
+- Api document: http://iss.ndl.go.jp/information/api/
+- NDC: http://www.libnet.pref.okayama.jp/shiryou/ndc/
+
+
+Licence
+-------------
 
 [BSD-2-Clause](https://opensource.org/licenses/BSD-2-Clause)

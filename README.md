@@ -1,33 +1,35 @@
-jpndlpy
-====
+Jpndlpy: HTTP Client for the Japan National Diet Library API.
+========
+[![image](https://img.shields.io/pypi/v/jpndlpy.svg)](https://pypi.org/project/jpndlpy/)
+[![image](https://img.shields.io/pypi/l/jpndlpy.svg)](https://pypi.org/project/jpndlpy/)
+[![image](https://img.shields.io/pypi/pyversions/jpndlpy.svg)](https://pypi.org/project/jpndlpy/)
 
-jpndlpy is a requests wrapper library for obtaining book information from the Japan National Diet Library.
+**jpndlpy is a requests wrapper library for obtaining book information from the Japan National Diet Library.**
+
 
 ## Description
 
 jpndlpy is gets information from opensearch provided by the Japan National Diet Library, and The obtained data is converted to json format.
 
-- Api document: http://iss.ndl.go.jp/information/api/
-- NDC: http://www.libnet.pref.okayama.jp/shiryou/ndc/
+Installation
+------------
 
-
-japanese readme
-
-- [japnese document](./README.ja.md)
-
-## Install
 How to install jpndlpy
 
-```bash
-python setup.py install
+``` {.sourceCode .bash}
+$ python setup.py install
 ```
 
 ```bash
-pip3 install jpndlpy
+$ pip3 install jpndlpy
 ```
 
-## Usage
+Usage
+------------
+
 How to Use
+
+sample code
 
 ``` python
 jndlclient = JapanNdlClient()
@@ -38,6 +40,17 @@ response = jndlclient.search_text(title="python", cnt=2)
 print(response.to_json())
 ```
 
-## Licence
+Documentation
+-------------
+
+- [japnese README](./README.ja.md)
+
+
+- Api document: http://iss.ndl.go.jp/information/api/
+- NDC: http://www.libnet.pref.okayama.jp/shiryou/ndc/
+
+
+Licence
+-------------
 
 [BSD-2-Clause](https://opensource.org/licenses/BSD-2-Clause)
