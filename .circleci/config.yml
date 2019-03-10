@@ -1,0 +1,31 @@
+version: 2
+
+# machine:
+  # timezone: Asia/Tokyo
+
+
+
+jobs:
+  build:
+    steps:
+      - checkout
+      - run: echo 'Hello world'
+#     docker:
+#       - image: circleci/golang:1.9.2
+#     working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
+#     steps:
+#       - checkout
+#       - run: echo 'Hello world!'
+
+# jobs:
+
+
+workflows:
+  version: 2
+  test-check:
+    jobs:
+      - build
+      # - pedantic:
+      #     requires:
+      #       - build
+      # - check
