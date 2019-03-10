@@ -50,7 +50,7 @@ setup(
     license=license,
     keywords="python requests",
     url=url,
-    python_requires='>=3.4, !=2.7.*',
+    python_requires='~=3.4, !=2.7.*',
     install_requires=requirements,
     classifiers=[
         'Programming Language :: Python :: 3',
