@@ -88,8 +88,8 @@ workflows:
     jobs:
       # - build
       - setup
-      - test
-          requires:
+      - test:
+          requires:  
             - setup
 
 # https://haskell.e-bigmoon.com/posts/2018/07-21-circleci-2.html
