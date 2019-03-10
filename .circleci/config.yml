@@ -86,11 +86,10 @@ workflows:
   version: 2
   setup_and_deploy:
     jobs:
-      # - build
       - setup
-      - test:
-          requires:  
-            - setup
+      # - test:
+      #     requires:  
+      #       - setup
 
 # https://haskell.e-bigmoon.com/posts/2018/07-21-circleci-2.html
 # https://qiita.com/nikadon/items/b7aac3b2d548ebb128ab#branches
