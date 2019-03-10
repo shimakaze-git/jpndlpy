@@ -11,6 +11,10 @@ jpndlpy is gets information from opensearch provided by the Japan National Diet 
 - NDC: http://www.libnet.pref.okayama.jp/shiryou/ndc/
 
 
+japanese readme
+
+- [japnese document](./README.ja.md)
+
 ## Install
 How to install jpndlpy
 

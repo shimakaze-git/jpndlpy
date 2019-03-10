@@ -5,7 +5,7 @@ jpndlpyは、国立国会図書館から図書情報を取得するためのrequ
 
 ## Description
 
-jpndlpyは、日本国立国会図書館が出すopensearch(http://iss.ndl.go.jp/api/opensearch)APIから情報を取得し、json形式に整形します。
+jpndlpyは、日本国立国会図書館が出すopensearch(http://iss.ndl.go.jp/api/opensearch) APIから情報を取得し、json形式に整形します。
 
 - Api document: http://iss.ndl.go.jp/information/api/
 - NDC: http://www.libnet.pref.okayama.jp/shiryou/ndc/
