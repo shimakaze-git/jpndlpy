@@ -37,6 +37,7 @@ class ItemEntity:
         self._pubDate = item['pubDate'] if 'pubDate' in item else ''
 
         self._creator = self.extract_creator(item)
+
         # print(item['dc:creator'])
         # print(item.keys())
         # print(item['dc:subject'])
@@ -70,7 +71,7 @@ class ItemEntity:
                     'transcription': transcription
                 }
             )
-        return creator_dcts
+        return creator_dicts
 
     def extract_identifier(self, item):
         ''' itemの固有の番号情報を抽出 '''

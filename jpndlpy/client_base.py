@@ -6,9 +6,7 @@ Details: http://iss.ndl.go.jp/information/api/
 created by @shimakaze-git
 '''
 
-import requests
-from requests import RequestException
-
+from .request import JapanNdlRequest
 from .exceptions import JapanNdlException
 from .response import JapanNdlResponse
 
@@ -25,15 +23,15 @@ class JapanNdlClientBase:
     def _request(self, url, params=None):
         ''' requests process
         '''
-        method = "GET"
-        response = requests.request(
-            method=method, url=url, params=params
+        request_object = JapanNdlRequest(
+            url=url,
+            params=params
         )
+        request_object.execute()
 
-        if response.ok:
+        response = request_object.response
+        if request_object.status:
             return JapanNdlResponse(response)
-        else:
-            return JapanNdlException(response)
 
     def request(self, params=None):
         url = self.api_url

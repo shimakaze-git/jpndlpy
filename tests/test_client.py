@@ -21,7 +21,7 @@ class JondlpyClientTest(unittest.TestCase):
 
         jndlclient = JapanNdlClient()
         response = jndlclient.search_text(title=title, cnt=cnt)
-        # print(response.to_json())
+        print(response.to_json())
 
         self.assertEqual(type(response.to_json()), dict)
 
