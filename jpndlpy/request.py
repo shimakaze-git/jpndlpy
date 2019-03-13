@@ -25,7 +25,10 @@ class JapanNdlRequest():
         self.__response = None
 
     def execute(self):
+        """ リクエストを開始する
+        """
         method = "GET"
+        print(self.__params)
         self.__response = requests.request(
             method=method,
             url=self.__url,
@@ -33,7 +36,15 @@ class JapanNdlRequest():
         )
 
     @property
-    def response(self):
+    def response(self)->object:
+        """ レスポンスを返す
+
+        Raises:
+            RequestException: statusがFalseだった際に起こる例外
+
+        Returns:
+            object: 'requests.models.Response'のオブジェクト
+        """
         if self.status:
             return self.__response
         else:

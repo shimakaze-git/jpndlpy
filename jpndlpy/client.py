@@ -87,16 +87,28 @@ class JapanNdlClient(JapanNdlClientBase):
             複数の図書情報
         """
 
-        data, errs = self.search_text_schema.load(kwargs)
+        data, errs = self.validation_serializer(kwargs)
         if not errs:
-            serialize_params = self.serializer(data)
-            self.response = self.get(serialize_params)
+            self.response = self.get(data)
             return self.response
         else:
             erros_mes = ''.join(
-                [key + ':' + errs[key][0] + '\n' for key in errs]
+                [key + ' : ' + errs[key][0] + '\n' for key in errs]
             )
             raise Exception(erros_mes)
+
+    def validation_serializer(self, kwargs)->tuple:
+        """ バリデーションチェックとシリアライズを行う
+
+        Args:
+            kwargs (dict): 検索に与える引数の辞書
+
+        Returns:
+            tuple: (data, errs)を返す
+        """
+        _, errs = self.search_text_schema.load(kwargs)
+        data, _ = self.search_text_schema.dump(kwargs)
+        return data, errs
 
     @property
     def search_title(self):

@@ -43,31 +43,3 @@ class JapanNdlClientBase:
         200
         '''
         return self.request(params)
-
-    def serializer(self, params, **kwargs):
-        ''' serializer url
-        paramsの中のURLをシリアライズする
-        Parameters
-        ----------
-        params : dict
-            GETパラメーターが格納された辞書
-        '''
-        serializer_params = ''.join([
-            p+"="+str(params[p])+"&" for p in params
-        ])
-
-        """
-        以下にシリアライズ
-
-        from_date -> from
-        until_date -> until
-        """
-        serializer_params = serializer_params.replace(
-            'from_date=',
-            'from='
-        )
-        serializer_params = serializer_params.replace(
-            'until_date=',
-            'until='
-        )
-        return serializer_params
