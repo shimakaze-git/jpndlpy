@@ -20,7 +20,15 @@ class ItemEntity:
 
         self._creator = []
 
-    def regist(self, item):
+    def regist(self, item)->None:
+        """ item regist setter
+
+        Args:
+            item ([dict]): 辞書型の図書情報
+
+        Returns:
+            None
+        """
         self._title = item['title'] if 'title' in item else ""
         self._link = item['link'] if 'link' in item else ""
 
@@ -46,7 +54,14 @@ class ItemEntity:
         # print("--------------------------")
 
     def extract_creator(self, item):
-        ''' 著者を抽出 extract author or creator'''
+        """ 著者を抽出 extract author or creator
+
+        Args:
+            item ([dict]): 辞書型の図書情報
+
+        Returns:
+            list: 著者情報のリスト
+        """
 
         creator_list = []
         if 'dc:creator' in item:
