@@ -33,7 +33,9 @@ class JondlpyTest(unittest.TestCase):
 
         jndlclient = JapanNdlClient()
         response = jndlclient.search_text(
-            title=title, cnt=cnt, from_date="2018-1-22"
+            # title=title, cnt=cnt, from_date="2018-1-22"
+            # title=title, cnt=cnt, from_date="2018-1-22", mediatype=10
+            title=title, cnt=cnt, from_date="2018-1-22", mediatype=[1, 2]
             # title="test", cnt=1, from_date="2018-1*22", until_date="tee"
         )
         # print(response.to_json())
@@ -51,6 +53,41 @@ class JondlpyTest(unittest.TestCase):
     #     self.assertEqual(response.to_json()['title'], title)
     #     self.assertEqual(response.to_json()['language'], "ja")
     #     self.assertEqual(response.to_json()['items_per_page'], str(cnt))
+
+    def test_jpndlpy_mediatype(self):
+        title = "python"
+        cnt = 2
+        mediatype = 1
+
+        jndlclient = JapanNdlClient()
+        response = jndlclient.search_text(
+            title=title, cnt=cnt, mediatype=mediatype
+        )
+
+        # self.assertEqual(response.to_json()['title'], title)
+        # self.assertEqual(response.to_json()['language'], "ja")
+        # self.assertEqual(response.to_json()['items_per_page'], str(cnt))
+
+        mediatype = [1, 2]
+        response = jndlclient.search_text(
+            title=title, cnt=cnt, mediatype=mediatype
+        )
+        # print(response.to_json())
+
+        # self.assertEqual(response.to_json()['title'], title)
+        # self.assertEqual(response.to_json()['language'], "ja")
+        # self.assertEqual(response.to_json()['items_per_page'], str(cnt))
+
+        mediatype = 20
+        response = jndlclient.search_text(
+            title=title, cnt=cnt, mediatype=mediatype
+        )
+        # print(response.to_json())
+
+        # self.assertEqual(response.to_json()['title'], title)
+        # self.assertEqual(response.to_json()['language'], "ja")
+        # self.assertEqual(response.to_json()['items_per_page'], str(cnt))
+
 
 if __name__ == "__main__":
     unittest.main()

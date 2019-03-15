@@ -15,10 +15,14 @@ class JapanNdlRequest():
     def __init__(
         self,
         url: str,
-        params: str
+        params: dict
     ):
-        ''' initialize with requests.Request
-        '''
+        """ initialize with requests.Request
+
+        Args:
+            url (str): 文字列型のURL
+            params (dict): 辞書型のGETパラメーター
+        """
         self.__url = url
         self.__params = params
 
@@ -52,7 +56,12 @@ class JapanNdlRequest():
             raise RequestException(exception_mes)
 
     @property
-    def status(self):
+    def status(self)->bool:
+        """ requestが成功したかどうかの状態を返す
+
+        Returns:
+            bool: True or False
+        """
         if self.__response is None:
             return False
 
