@@ -18,8 +18,12 @@ class SearchTextSchema(Schema):
     ndc = fields.String()
     from_date = fields.String(load_to='from', dump_to='from')
     until_date = fields.String(load_to='until', dump_to='until')
-    cnt = fields.Integer()
-    idx = fields.Integer()
+    cnt = fields.Integer(
+        validate=lambda n: 1 <= n <= 500
+    )
+    idx = fields.Integer(
+        validate=lambda n: 1 <= n <= 500
+    )
     isbn = fields.String()
     mediatype = fields.Method("validate_mediatype")
 
@@ -42,7 +46,6 @@ class SearchTextSchema(Schema):
                 mediatype_str = mediatype_str.rstrip()
 
             elif (type(mediatype) is int) and (1 <= mediatype <= 9):
-                print('test!!')
                 mediatype_str = str(mediatype_str)
             else:
                 # 範囲外の場合は強制的に1に変換する
