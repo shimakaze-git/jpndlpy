@@ -65,7 +65,8 @@ class JapanNdlRequest():
         # ]
 
     def params_serialize(self)->list:
-        """ HTTP GETパラメーターを整形
+        """HTTP GETパラメーターを整形
+
         Returns:
             list: GETパラメーターを含んだ辞書のリスト
         """
