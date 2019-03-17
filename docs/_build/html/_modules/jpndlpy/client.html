@@ -1,0 +1,244 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jpndlpy.client &#8212; jpndlpy  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for jpndlpy.client</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39; JapanNdlClient</span>
+<span class="sd">Python wrapper for Japan National Dict Library API</span>
+<span class="sd">Details: http://iss.ndl.go.jp/information/api/</span>
+<span class="sd">created by @shimakaze-git</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">.validator</span> <span class="k">import</span> <span class="n">SearchTextSchema</span>
+<span class="kn">from</span> <span class="nn">.client_base</span> <span class="k">import</span> <span class="n">JapanNdlClientBase</span>
+
+
+<div class="viewcode-block" id="JapanNdlClient"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.client.JapanNdlClient">[docs]</a><span class="k">class</span> <span class="nc">JapanNdlClient</span><span class="p">(</span><span class="n">JapanNdlClientBase</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Client for JP NDL API v2</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_text_schema</span> <span class="o">=</span> <span class="n">SearchTextSchema</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="JapanNdlClient.search_text"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.client.JapanNdlClient.search_text">[docs]</a>    <span class="k">def</span> <span class="nf">search_text</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="c1"># dpid=None,</span>
+        <span class="c1"># dpgroupid=None,</span>
+        <span class="c1"># title=&quot;&quot;,</span>
+        <span class="c1"># creator=None,</span>
+        <span class="c1"># digitized_publisher=None,</span>
+        <span class="c1"># ndc=None,</span>
+        <span class="c1"># from_date=None,</span>
+        <span class="c1"># until_date=None,</span>
+        <span class="c1"># cnt=500,</span>
+        <span class="c1"># idx=1,</span>
+        <span class="c1"># isbn=str,</span>
+        <span class="c1"># mediatype=1,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        OpenSearchに対して検索処理を行う</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dpid : str</span>
+<span class="sd">            データプロバイダID</span>
+<span class="sd">        dpgroupid : str</span>
+<span class="sd">            データプロバイダグループID</span>
+<span class="sd">        any : str</span>
+<span class="sd">            すべての項目を対象に検索</span>
+<span class="sd">        title : str</span>
+<span class="sd">            タイトル</span>
+<span class="sd">        creator : str</span>
+<span class="sd">            作成者</span>
+<span class="sd">        publisher : str</span>
+<span class="sd">            出版社</span>
+<span class="sd">        digitized_publisher : str</span>
+<span class="sd">            デジタル化した製作者</span>
+<span class="sd">        ndc : str</span>
+<span class="sd">            分類（NDC）</span>
+<span class="sd">        from_date : str</span>
+<span class="sd">            開始出版年月日（YYYY、YYYY-MM、YYYY-MM-DD）</span>
+<span class="sd">        until_date : str</span>
+<span class="sd">            終了出版年月日（YYYY、YYYY-MM、YYYY-MM-DD）</span>
+<span class="sd">        cnt : int</span>
+<span class="sd">            出力レコード上限値（省略時は200 とする）</span>
+<span class="sd">        idx : int</span>
+<span class="sd">            レコード取得開始位置（省略時は1 とする）</span>
+<span class="sd">        isbn : str</span>
+<span class="sd">            ISBN</span>
+<span class="sd">            10 桁または13 桁で入力した場合は、10 桁、13 桁</span>
+<span class="sd">            の両方に変換して完全一致検索を行う。</span>
+<span class="sd">            それ以外の桁で入力した場合は前方一致検索を行う</span>
+<span class="sd">        mediatype : int</span>
+<span class="sd">            資料種別</span>
+<span class="sd">            国立国会図書館サーチの詳細検索の資料種別に対応</span>
+<span class="sd">            “1”：本</span>
+<span class="sd">            “2”：記事・論文</span>
+<span class="sd">            “3”：新聞</span>
+<span class="sd">            “4”：児童書</span>
+<span class="sd">            “5”：レファレンス情報</span>
+<span class="sd">            “6”：デジタル資料</span>
+<span class="sd">            “7”：その他</span>
+<span class="sd">            “8”：障害者向け資料（障害者向け検索対象資料）</span>
+<span class="sd">            “9”：立法情報</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        items : json</span>
+<span class="sd">            複数の図書情報</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data</span><span class="p">,</span> <span class="n">errs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_serializer</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">errs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">erros_mes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">key</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="n">errs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">errs</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">erros_mes</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JapanNdlClient.validation_serializer"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.client.JapanNdlClient.validation_serializer">[docs]</a>    <span class="k">def</span> <span class="nf">validation_serializer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; バリデーションチェックとシリアライズを行う</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            kwargs (dict): 検索に与える引数の辞書</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: (data, errs)を返す</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">errs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_text_schema</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_text_schema</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">errs</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">search_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Returns text of search</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">_title</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">search_link</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Returns link of search</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">_link</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">search_language</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Returns language of search</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">_language</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">search_total_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Returns total_results of search</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">_total_results</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">search_start_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Returns start_index of search</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">_start_index</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">search_items_per_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Returns items_per_page of search</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">_items_per_page</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">jpndlpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../jpndlpy.html">jpndlpy package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Author.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
