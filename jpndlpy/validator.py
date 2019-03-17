@@ -50,8 +50,10 @@ class SearchTextSchema(Schema):
             else:
                 # 範囲外の場合は強制的に1に変換する
                 mediatype_str = str(1)
+        else:
+            mediatype_str = str(1)
 
-            return mediatype_str
+        return mediatype_str
 
     @validates('from_date')
     def validate_from_date(self, value)->None:
