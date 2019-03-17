@@ -8,8 +8,7 @@ import re
 import xmltodict
 import json
 
-# from xml import etree.ElementTree as et
-import xml.etree.ElementTree as et
+from xml.etree import ElementTree as ET
 
 from .item_entity import ItemEntity
 
@@ -23,7 +22,9 @@ class JapanNdlResponse():
         :params response: instance of requests.Response
         '''
         self.response = response
-        self.headers = response.headers
+        # self.headers = response.headers
+        self.headers = response[0].headers
+
         self.items = []
 
         self._title = None
@@ -72,8 +73,9 @@ class JapanNdlResponse():
         """ xml to dict """
         response = self.response
 
+        response_1 = response[0]
         dict_items = xmltodict.parse(
-            response.text
+            response_1.text
         )
 
         enc_items = json.dumps(
@@ -88,7 +90,7 @@ class JapanNdlResponse():
     def extract_search_info(self, root):
         """ extract search info """
 
-        self._title = root['title'].split()[0]
+        self._title = root['title'].split()[1]
         self._link = root['link']
         self._description = root['description']
         self._language = root['language']
