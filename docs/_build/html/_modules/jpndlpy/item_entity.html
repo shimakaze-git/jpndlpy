@@ -2,11 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>jpndlpy.item_entity &#8212; jpndlpy  documentation</title>
+    <title>jpndlpy.item_entity &#8212; jpndlpy  ドキュメント</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -14,8 +14,9 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -32,7 +33,7 @@
 
           <div class="body" role="main">
             
-  <h1>Source code for jpndlpy.item_entity</h1><div class="highlight"><pre>
+  <h1>jpndlpy.item_entity のソースコード</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&#39;&#39;&#39; jpndlpy Item Entity</span>
@@ -42,7 +43,7 @@
 <span class="kn">import</span> <span class="nn">re</span>
 
 
-<div class="viewcode-block" id="ItemEntity"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity">[docs]</a><span class="k">class</span> <span class="nc">ItemEntity</span><span class="p">:</span>
+<div class="viewcode-block" id="ItemEntity"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity">[ドキュメント]</a><span class="k">class</span> <span class="nc">ItemEntity</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Item Entity &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -55,7 +56,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_creator</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="ItemEntity.regist"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.regist">[docs]</a>    <span class="k">def</span> <span class="nf">regist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ItemEntity.regist"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.regist">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">regist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; item regist setter</span>
 
 <span class="sd">        Args:</span>
@@ -88,7 +89,7 @@
         <span class="c1"># print(self._creator)</span>
         <span class="c1"># print(&quot;--------------------------&quot;)</span>
 
-<div class="viewcode-block" id="ItemEntity.extract_creator"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.extract_creator">[docs]</a>    <span class="k">def</span> <span class="nf">extract_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<div class="viewcode-block" id="ItemEntity.extract_creator"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.extract_creator">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">extract_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; 著者を抽出 extract author or creator</span>
 
 <span class="sd">        Args:</span>
@@ -123,11 +124,11 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">creator_dicts</span></div>
 
-<div class="viewcode-block" id="ItemEntity.extract_identifier"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.extract_identifier">[docs]</a>    <span class="k">def</span> <span class="nf">extract_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<div class="viewcode-block" id="ItemEntity.extract_identifier"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.extract_identifier">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">extract_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39; itemの固有の番号情報を抽出 &#39;&#39;&#39;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="ItemEntity.to_json"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.to_json">[docs]</a>    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ItemEntity.to_json"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.item_entity.ItemEntity.to_json">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">,</span>
             <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_link</span><span class="p">,</span>
@@ -154,7 +155,7 @@
 
 
 
-<h3>Navigation</h3>
+<h3>ナビゲーション</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../jpndlpy.html">jpndlpy package</a></li>
@@ -164,17 +165,17 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../index.html">モジュールコード</a><ul>
   </ul></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <input type="submit" value="検索" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>

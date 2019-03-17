@@ -2,11 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>jpndlpy.request &#8212; jpndlpy  documentation</title>
+    <title>jpndlpy.request &#8212; jpndlpy  ドキュメント</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -14,8 +14,9 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -32,7 +33,7 @@
 
           <div class="body" role="main">
             
-  <h1>Source code for jpndlpy.request</h1><div class="highlight"><pre>
+  <h1>jpndlpy.request のソースコード</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&#39;&#39;&#39; jpndlpy.JapanNdlRequest</span>
@@ -47,7 +48,7 @@
 <span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="k">import</span> <span class="n">ThreadPoolExecutor</span>
 
 
-<div class="viewcode-block" id="JapanNdlRequest"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest">[docs]</a><span class="k">class</span> <span class="nc">JapanNdlRequest</span><span class="p">():</span>
+<div class="viewcode-block" id="JapanNdlRequest"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest">[ドキュメント]</a><span class="k">class</span> <span class="nc">JapanNdlRequest</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39; Wrap requests.Request</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
@@ -67,7 +68,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__response</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="JapanNdlRequest.execute"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JapanNdlRequest.execute"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest.execute">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; リクエストを開始する</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
@@ -99,7 +100,7 @@
         <span class="c1">#     )</span>
         <span class="c1"># ]</span>
 
-<div class="viewcode-block" id="JapanNdlRequest.params_serialize"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest.params_serialize">[docs]</a>    <span class="k">def</span> <span class="nf">params_serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
+<div class="viewcode-block" id="JapanNdlRequest.params_serialize"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest.params_serialize">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">params_serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;HTTP GETパラメーターを整形</span>
 
 <span class="sd">        Returns:</span>
@@ -141,7 +142,7 @@
 
         <span class="k">return</span> <span class="n">params_list</span><span class="p">,</span> <span class="n">request_range</span></div>
 
-<div class="viewcode-block" id="JapanNdlRequest.request_process"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest.request_process">[docs]</a>    <span class="k">def</span> <span class="nf">request_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="JapanNdlRequest.request_process"><a class="viewcode-back" href="../../jpndlpy.html#jpndlpy.request.JapanNdlRequest.request_process">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">request_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; requestsを使用しての実際にHTTPリクエストを送信する</span>
 
 <span class="sd">        Args:</span>
@@ -211,7 +212,7 @@
 
 
 
-<h3>Navigation</h3>
+<h3>ナビゲーション</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../jpndlpy.html">jpndlpy package</a></li>
@@ -221,17 +222,17 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../index.html">モジュールコード</a><ul>
   </ul></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <input type="submit" value="検索" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
