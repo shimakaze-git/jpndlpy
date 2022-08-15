@@ -66,6 +66,8 @@ class ItemEntity:
         creator_list = []
         if 'dc:creator' in item:
             creator_list = item['dc:creator']
+            if not creator_list:
+                return''
         else:
             return ''
 
