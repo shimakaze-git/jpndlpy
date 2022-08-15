@@ -67,7 +67,12 @@ class JapanNdlResponse():
         """
         if 'item' in root:
             items = root['item']
-            self.extract_items(items)
+            itemlist = []
+            if type(items) is dict:
+                itemlist.append(items)
+            else:
+                itemlist = items
+            self.extract_items(itemlist)
 
     def xml_to_dict(self):
         """ xml to dict """
