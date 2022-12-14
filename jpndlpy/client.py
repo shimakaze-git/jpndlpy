@@ -88,13 +88,16 @@ class JapanNdlClient(JapanNdlClientBase):
         """
 
         data, errs = self.validation_serializer(kwargs)
-        if not errs:
+        if not errs and len(data) > 0:
             self.response = self.get(data)
             return self.response
         else:
-            erros_mes = ''.join(
-                [key + ' : ' + errs[key][0] + '\n' for key in errs]
-            )
+            if errs:
+                erros_mes = ''.join(
+                    [key + ' : ' + errs[key][0] + '\n' for key in errs]
+                )
+            else:
+                erros_mes = 'Missing data.'
             raise Exception(erros_mes)
 
     def validation_serializer(self, kwargs)->tuple:

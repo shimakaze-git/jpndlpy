@@ -5,6 +5,9 @@ created by @shimakaze-git
 '''
 import json
 import re
+# XXX
+import logging
+import pprint
 
 
 class ItemEntity:
@@ -29,6 +32,10 @@ class ItemEntity:
         Returns:
             None
         """
+        logger = logging.getLogger("jpndlpy")
+        logger.debug("--------------------")
+        logger.debug(pprint.pformat(item))
+        logger.debug("--------------------")
         self._title = item['title'] if 'title' in item else ""
         self._link = item['link'] if 'link' in item else ""
 

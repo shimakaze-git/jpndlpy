@@ -12,7 +12,7 @@ from marshmallow import Schema, fields, validates, ValidationError
 class SearchTextSchema(Schema):
     dpid = fields.String()
     dpgroupid = fields.String()
-    title = fields.String(required=True)
+    title = fields.String()
     creator = fields.String()
     digitized_publisher = fields.String()
     ndc = fields.String()
