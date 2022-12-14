@@ -103,6 +103,8 @@ class JapanNdlResponse():
         '''
         item情報を抽出する
         '''
+        if type(items) is not list:
+            items = [items]
         for item in items:
             """ Entity Object """
             item_object = ItemEntity()
