@@ -7,9 +7,6 @@ created by @shimakaze-git
 import re
 import xmltodict
 import json
-# XXX
-import logging
-import pprint
 
 from xml.etree import ElementTree as ET
 
@@ -59,11 +56,8 @@ class JapanNdlResponse():
     def serialize(self):
         ''' serialization jsonResponse
         '''
-        logger = logging.getLogger("jpndlpy")
-
         # root = self.xml_parse()
         root = self.xml_to_dict()
-        logger.debug(pprint.pformat(root))
 
         """ 検索情報を抽出していく """
         self.extract_search_info(root)
@@ -109,19 +103,10 @@ class JapanNdlResponse():
         '''
         item情報を抽出する
         '''
-        logger = logging.getLogger("jpndlpy")
-        logger.debug('--------------------')
-        logger.debug('extract_items:items')
-        logger.debug(pprint.pformat(items))
-        logger.debug('--------------------')
-
         if type(items) is not list:
             items = [items]
         for item in items:
             """ Entity Object """
-            logger.debug('extract_items:item')
-            logger.debug(pprint.pformat(item))
-            logger.debug('--------------------')
             item_object = ItemEntity()
             item_object.regist(item)
 
