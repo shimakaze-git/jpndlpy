@@ -86,9 +86,8 @@ class JapanNdlClient(JapanNdlClientBase):
         items : json
             複数の図書情報
         """
-
         data, errs = self.validation_serializer(kwargs)
-        if not errs and len(data) > 0:
+        if not errs and len(data) > 1:
             self.response = self.get(data)
             return self.response
         else:
